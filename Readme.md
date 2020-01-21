@@ -1,6 +1,6 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
-* Студент: [Артур Шаповалов](https://up.htmlacademy.ru/javascript/19/user/1022153).
+* Студент: [Артур Шаповалов](https://htmlacademy.ru/profile/shapovalov).
 * Наставник: [Артём Рудов] (https://htmlacademy.ru/profile/artrudov/certificates).
 
 ---
