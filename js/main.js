@@ -1,6 +1,5 @@
 'use strict';
 
-// var COMMENTS_LENGTH = 15;
 var COMMENTS_MIN = 2;
 var COMMENTS_MAX = 6;
 var LIKES_MIN = 15;
@@ -46,7 +45,6 @@ var getMessage = function () {
 
 var createComments = function () {
   var commentsNumber = getRandomNumber(COMMENTS_MIN, COMMENTS_MAX);
-  console.log(commentsNumber);
   comments = [];
   for (var i = 0; i < commentsNumber; i++) {
     comments[i] = {
