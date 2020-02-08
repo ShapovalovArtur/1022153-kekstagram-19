@@ -1,8 +1,11 @@
 'use strict';
 
-var COMMENTS_NUMBER = 3;
+var COMMENTS_LENGTH = 15;
 var LIKES_MIN = 15;
 var LIKES_MAX = 200;
+var PHOTOS_NUMBER = 25;
+
+var photos = [];
 var comments = [];
 var names = ['Андрей', 'Артем', 'Александр', 'Антон', 'Анатолий'];
 var messages = [
@@ -40,7 +43,7 @@ var getMessage = function () {
 };
 
 var createComments = function () {
-  for (var i = 0; i < COMMENTS_NUMBER; i++) {
+  for (var i = 0; i < COMMENTS_LENGTH; i++) {
     comments[i] = {
       avatar: makeAvatar(),
       message: getMessage(),
@@ -58,18 +61,16 @@ var getDescription = function () {
   return descriptions[(getRandomNumber(0, descriptions.length - 1))];
 };
 
-createComments();
-getLikes();
-getDescription();
+var createPhotos = function () {
+  for (var i = 0; i < PHOTOS_NUMBER; i++) {
+    photos[i] = {
+      url: makeUrl(),
+      description: getDescription(),
+      likes: getLikes(),
+      comments: createComments()
+    };
+  }
+  return photos;
+};
 
-
-
-
-// var createObject = function () {
-//   var picture = {
-//     url: 'photos/1.jpg',
-//     description: '',
-//     likes: '',
-//     comments: []
-//   };
-// };
+createPhotos();
