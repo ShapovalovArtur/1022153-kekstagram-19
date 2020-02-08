@@ -1,6 +1,8 @@
 'use strict';
 
 var COMMENTS_NUMBER = 3;
+var LIKES_MIN = 15;
+var LIKES_MAX = 200;
 var comments = [];
 var names = ['Андрей', 'Артем', 'Александр', 'Антон', 'Анатолий'];
 var messages = [
@@ -41,8 +43,12 @@ var createComments = function () {
   return comments;
 };
 
-createComments();
+var getLikes = function () {
+  return getRandomNumber(LIKES_MIN, LIKES_MAX);
+};
 
+createComments();
+getLikes();
 
 // var createObject = function () {
 //   var picture = {
