@@ -1,6 +1,8 @@
 'use strict';
 
-var COMMENTS_LENGTH = 15;
+// var COMMENTS_LENGTH = 15;
+var COMMENTS_MIN = 2;
+var COMMENTS_MAX = 6;
 var LIKES_MIN = 15;
 var LIKES_MAX = 200;
 var PHOTOS_NUMBER = 25;
@@ -43,7 +45,10 @@ var getMessage = function () {
 };
 
 var createComments = function () {
-  for (var i = 0; i < COMMENTS_LENGTH; i++) {
+  var commentsNumber = getRandomNumber(COMMENTS_MIN, COMMENTS_MAX);
+  console.log(commentsNumber);
+  comments = [];
+  for (var i = 0; i < commentsNumber; i++) {
     comments[i] = {
       avatar: makeAvatar(),
       message: getMessage(),
