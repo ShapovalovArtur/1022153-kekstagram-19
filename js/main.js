@@ -4,12 +4,15 @@ var COMMENTS_MIN = 2;
 var COMMENTS_MAX = 6;
 var LIKES_MIN = 15;
 var LIKES_MAX = 200;
+var URL_NAME_MIN = 1;
+var URL_NAME_MAX = 25;
+var AVATAR_NAME_MIN = 1;
+var AVATAR_NAME_MAX = 6;
 var PHOTOS_NUMBER = 25;
-
-var photos = [];
-var comments = [];
-var names = ['Андрей', 'Артем', 'Александр', 'Антон', 'Анатолий'];
-var messages = [
+var PHOTOS = [];
+var COMMENTS = [];
+var NAMES = ['Андрей', 'Артем', 'Александр', 'Антон', 'Анатолий'];
+var MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -17,43 +20,48 @@ var messages = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-
-var descriptions = ['Какой чудесный день!', 'Какой чудесный пень!', 'Какой чудесный я!', 'И песенка моя!', 'Потрясающе!',
-  'Отвратительно!'];
+var DESCRIPTIONS = [
+  'Какой чудесный день!',
+  'Какой чудесный пень!',
+  'Какой чудесный я!',
+  'И песенка моя!',
+  'Потрясающе!',
+  'Отвратительно!'
+];
 
 var getRandomNumber = function (minValue, maxValue) {
   return Math.floor(minValue + Math.random() * (maxValue + 1 - minValue));
 };
 
 var makeAvatar = function () {
-  var avatar = 'img/avatar-' + getRandomNumber(1, 6) + '.svg';
+  var avatar = 'img/avatar-' + getRandomNumber(AVATAR_NAME_MIN, AVATAR_NAME_MAX) + '.svg';
   return avatar;
 };
 
 var makeUrl = function () {
-  var url = 'photos/' + getRandomNumber(1, 25) + '.jpg';
+  var url = 'photos/' + getRandomNumber(URL_NAME_MIN, URL_NAME_MAX) + '.jpg';
   return url;
 };
 
 var getCommentName = function () {
-  return names[(getRandomNumber(0, names.length - 1))];
+  return NAMES[(getRandomNumber(0, NAMES.length - 1))];
 };
 
 var getMessage = function () {
-  return messages[(getRandomNumber(0, messages.length - 1))];
+  return MESSAGES[(getRandomNumber(0, MESSAGES.length - 1))];
 };
 
 var createComments = function () {
   var commentsNumber = getRandomNumber(COMMENTS_MIN, COMMENTS_MAX);
-  comments = [];
+  COMMENTS = [];
   for (var i = 0; i < commentsNumber; i++) {
-    comments[i] = {
+    COMMENTS[i] = {
       avatar: makeAvatar(),
       message: getMessage(),
       name: getCommentName()
     };
   }
-  return comments;
+  return COMMENTS;
 };
 
 var getLikes = function () {
@@ -61,19 +69,19 @@ var getLikes = function () {
 };
 
 var getDescription = function () {
-  return descriptions[(getRandomNumber(0, descriptions.length - 1))];
+  return DESCRIPTIONS[(getRandomNumber(0, DESCRIPTIONS.length - 1))];
 };
 
 var createPhotos = function () {
   for (var i = 0; i < PHOTOS_NUMBER; i++) {
-    photos[i] = {
+    PHOTOS[i] = {
       url: makeUrl(),
       description: getDescription(),
       likes: getLikes(),
       comments: createComments()
     };
   }
-  return photos;
+  return PHOTOS;
 };
 
 var picturesArr = createPhotos();
