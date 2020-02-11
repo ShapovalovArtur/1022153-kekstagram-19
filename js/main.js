@@ -62,20 +62,12 @@ var createComments = function () {
   return COMMENTS;
 };
 
-var getLikes = function () {
-  return getRandomNumber(LIKES_MIN, LIKES_MAX);
-};
-
-var getDescription = function () {
-  return DESCRIPTIONS[(getRandomNumber(0, DESCRIPTIONS.length - 1))];
-};
-
 var createPhotos = function () {
   for (var i = 0; i < PHOTOS_NUMBER; i++) {
     PHOTOS[i] = {
       url: makeUrl(),
-      description: getDescription(),
-      likes: getLikes(),
+      description: DESCRIPTIONS[(getRandomNumber(0, DESCRIPTIONS.length - 1))],
+      likes: getRandomNumber(LIKES_MIN, LIKES_MAX),
       comments: createComments()
     };
   }
