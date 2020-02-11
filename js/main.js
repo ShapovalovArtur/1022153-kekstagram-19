@@ -18,11 +18,11 @@ var messages = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-var descriptions = ['Какой чудесный день!', 'Какой чудесный пень!', 'Какой чудесный я!', 'И песенка моя!', 'Кровь! кровь!',
-  'Я выпью твою кровь!', 'Я видал в гробу тебя!', 'И всю твою любовь!', 'Во поле березка стояла!'];
+var descriptions = ['Какой чудесный день!', 'Какой чудесный пень!', 'Какой чудесный я!', 'И песенка моя!', 'Потрясающе!',
+  'Отвратительно!'];
 
 var getRandomNumber = function (minValue, maxValue) {
-  return Math.floor((Math.random() * (maxValue + 1) + minValue));
+  return Math.floor(minValue + Math.random() * (maxValue + 1 - minValue));
 };
 
 var makeAvatar = function () {
@@ -76,4 +76,17 @@ var createPhotos = function () {
   return photos;
 };
 
-createPhotos();
+var picturesArr = createPhotos();
+var picturesList = document.querySelector('.pictures');
+
+for (var i = 0; i < picturesArr.length; i++) {
+  var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+  var picture = pictureTemplate.cloneNode(true);
+  var pictureImg = picture.querySelector('.picture__img');
+  var pictureLikes = picture.querySelector('.picture__likes');
+  var pictureComments = picture.querySelector('.picture__comments');
+  pictureImg.src = picturesArr[i].url;
+  pictureLikes.textContent = picturesArr[i].likes;
+  pictureComments.textContent = picturesArr[i].comments.length;
+  picturesList.appendChild(picture);
+}
