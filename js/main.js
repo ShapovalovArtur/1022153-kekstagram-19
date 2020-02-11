@@ -84,9 +84,9 @@ var createPhotos = function () {
 
 var picturesArr = createPhotos();
 var picturesList = document.querySelector('.pictures');
+var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 for (var i = 0; i < picturesArr.length; i++) {
-  var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
   var picture = pictureTemplate.cloneNode(true);
   var pictureImg = picture.querySelector('.picture__img');
   var pictureLikes = picture.querySelector('.picture__likes');
