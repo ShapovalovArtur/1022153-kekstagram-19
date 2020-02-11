@@ -34,13 +34,11 @@ var getRandomNumber = function (minValue, maxValue) {
 };
 
 var makeAvatar = function () {
-  var avatar = 'img/avatar-' + getRandomNumber(AVATAR_NAME_MIN, AVATAR_NAME_MAX) + '.svg';
-  return avatar;
+  return 'img/avatar-' + getRandomNumber(AVATAR_NAME_MIN, AVATAR_NAME_MAX) + '.svg';
 };
 
 var makeUrl = function () {
-  var url = 'photos/' + getRandomNumber(URL_NAME_MIN, URL_NAME_MAX) + '.jpg';
-  return url;
+  return 'photos/' + getRandomNumber(URL_NAME_MIN, URL_NAME_MAX) + '.jpg';
 };
 
 var getCommentName = function () {
