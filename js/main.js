@@ -62,14 +62,19 @@ var createComments = function () {
   return COMMENTS;
 };
 
+var createPhoto = function () {
+  var photo = {
+    url: makeUrl(),
+    description: DESCRIPTIONS[(getRandomNumber(0, DESCRIPTIONS.length - 1))],
+    likes: getRandomNumber(LIKES_MIN, LIKES_MAX),
+    comments: createComments()
+  };
+  return photo;
+};
+
 var createPhotos = function () {
   for (var i = 0; i < PHOTOS_NUMBER; i++) {
-    PHOTOS[i] = {
-      url: makeUrl(),
-      description: DESCRIPTIONS[(getRandomNumber(0, DESCRIPTIONS.length - 1))],
-      likes: getRandomNumber(LIKES_MIN, LIKES_MAX),
-      comments: createComments()
-    };
+    PHOTOS[i] = createPhoto();
   }
   return PHOTOS;
 };
