@@ -83,7 +83,7 @@ var picturesArr = createPhotos();
 var picturesList = document.querySelector('.pictures');
 var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-for (var i = 0; i < picturesArr.length; i++) {
+var renderPicture = function (i) {
   var picture = pictureTemplate.cloneNode(true);
   var pictureImg = picture.querySelector('.picture__img');
   var pictureLikes = picture.querySelector('.picture__likes');
@@ -91,5 +91,9 @@ for (var i = 0; i < picturesArr.length; i++) {
   pictureImg.src = picturesArr[i].url;
   pictureLikes.textContent = picturesArr[i].likes;
   pictureComments.textContent = picturesArr[i].comments.length;
-  picturesList.appendChild(picture);
+  return picture;
+};
+
+for (var i = 0; i < picturesArr.length; i++) {
+  picturesList.appendChild(renderPicture(i));
 }
