@@ -9,7 +9,6 @@ var URL_NAME_MAX = 25;
 var AVATAR_NAME_MIN = 1;
 var AVATAR_NAME_MAX = 6;
 var PHOTOS_NUMBER = 25;
-var PHOTOS = [];
 var NAMES = ['Андрей', 'Артем', 'Александр', 'Антон', 'Анатолий'];
 var MESSAGES = [
   'Всё отлично!',
@@ -27,6 +26,8 @@ var DESCRIPTIONS = [
   'Потрясающе!',
   'Отвратительно!'
 ];
+
+var photos = [];
 
 var getRandomNumber = function (minValue, maxValue) {
   return Math.floor(minValue + Math.random() * (maxValue + 1 - minValue));
@@ -73,9 +74,9 @@ var createPhoto = function () {
 
 var createPhotos = function () {
   for (var i = 0; i < PHOTOS_NUMBER; i++) {
-    PHOTOS.push(createPhoto());
+    photos.push(createPhoto());
   }
-  return PHOTOS;
+  return photos;
 };
 
 var picturesArr = createPhotos();
