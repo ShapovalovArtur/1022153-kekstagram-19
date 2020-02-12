@@ -10,7 +10,6 @@ var AVATAR_NAME_MIN = 1;
 var AVATAR_NAME_MAX = 6;
 var PHOTOS_NUMBER = 25;
 var PHOTOS = [];
-var COMMENTS = [];
 var NAMES = ['Андрей', 'Артем', 'Александр', 'Антон', 'Анатолий'];
 var MESSAGES = [
   'Всё отлично!',
@@ -51,15 +50,15 @@ var getMessage = function () {
 
 var createComments = function () {
   var commentsNumber = getRandomNumber(COMMENTS_MIN, COMMENTS_MAX);
-  COMMENTS = [];
+  var comments = [];
   for (var i = 0; i < commentsNumber; i++) {
-    COMMENTS[i] = {
+    comments[i] = {
       avatar: makeAvatar(),
       message: getMessage(),
       name: getCommentName()
     };
   }
-  return COMMENTS;
+  return comments;
 };
 
 var createPhoto = function () {
