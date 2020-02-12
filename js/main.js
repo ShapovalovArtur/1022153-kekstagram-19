@@ -74,7 +74,7 @@ var createPhoto = function () {
 
 var createPhotos = function () {
   for (var i = 0; i < PHOTOS_NUMBER; i++) {
-    PHOTOS[i] = createPhoto();
+    PHOTOS.push(createPhoto());
   }
   return PHOTOS;
 };
