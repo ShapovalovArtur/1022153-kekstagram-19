@@ -1,5 +1,6 @@
 'use strict';
 
+var ESC_KEY = 'Escape';
 var COMMENTS_MIN = 2;
 var COMMENTS_MAX = 6;
 var LIKES_MIN = 15;
@@ -97,3 +98,32 @@ var renderPicture = function (i) {
 for (var i = 0; i < picturesArr.length; i++) {
   picturesList.appendChild(renderPicture(i));
 }
+
+var uploadOpen = document.querySelector('#upload-file');
+var uploadOverlay = document.querySelector('.img-upload__overlay');
+var uploadClose = uploadOverlay.querySelector('.img-upload__cancel');
+
+var popupEscHandler = function (evt) {
+  if (evt.key === ESC_KEY) {
+    console.log('esc');
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  uploadOverlay.classList.remove('hidden');
+  document.addEventListener('keydown', popupEscHandler);
+};
+
+var closePopup = function () {
+  uploadOverlay.classList.add('hidden');
+  document.removeEventListener('keydown', popupEscHandler);
+};
+
+uploadOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+uploadClose.addEventListener('click', function () {
+  closePopup();
+});
