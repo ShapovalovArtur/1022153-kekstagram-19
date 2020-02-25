@@ -103,6 +103,7 @@ var uploadOpen = document.querySelector('#upload-file');
 var uploadOverlay = document.querySelector('.img-upload__overlay');
 var uploadClose = uploadOverlay.querySelector('.img-upload__cancel');
 var effectPin = uploadOverlay.querySelector('.effect-level__pin');
+var effectPinValue = uploadOverlay.querySelector('.effect-level__value');
 var body = document.querySelector('body');
 var uploadPreview = uploadOverlay.querySelector('.img-upload__preview img');
 var effectsList = uploadOverlay.querySelector('.effects__list');
@@ -128,9 +129,29 @@ var closePopup = function () {
 };
 
 var filterChangeHandler = function (evt) {
+  uploadPreview.style.filter = '';
   uploadPreview.classList.remove('effects__preview--' + currentEffect);
   currentEffect = evt.target.value;
   uploadPreview.classList.add('effects__preview--' + currentEffect);
+};
+
+var effectChangeHandler = function () {
+  effectPinValue = getRandomNumber(0, 100) / 100;
+  if (currentEffect === 'chrome') {
+    uploadPreview.style.filter = 'grayscale(0.3)';
+  }
+  if (currentEffect === 'sepia') {
+    uploadPreview.style.filter = 'sepia(0.7)';
+  }
+  if (currentEffect === 'marvin') {
+    uploadPreview.style.filter = 'invert(0.3)';
+  }
+  if (currentEffect === 'phobos') {
+    uploadPreview.style.filter = 'blur(1px)';
+  }
+  if (currentEffect === 'heat') {
+    uploadPreview.style.filter = 'brightness(1)';
+  }
 };
 
 uploadOpen.addEventListener('change', function () {
@@ -141,8 +162,8 @@ uploadClose.addEventListener('click', function () {
   closePopup();
 });
 
-effectPin.addEventListener('mouseup', function () {
-  console.log('Отпустил ползунок');
-});
-
 effectsList.addEventListener('change', filterChangeHandler);
+
+effectPin.addEventListener('mouseup', function () {
+  effectChangeHandler();
+});
