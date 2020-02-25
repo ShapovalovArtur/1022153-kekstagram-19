@@ -105,7 +105,6 @@ var uploadClose = uploadOverlay.querySelector('.img-upload__cancel');
 
 var popupEscHandler = function (evt) {
   if (evt.key === ESC_KEY) {
-    console.log('esc');
     closePopup();
   }
 };
@@ -118,9 +117,10 @@ var openPopup = function () {
 var closePopup = function () {
   uploadOverlay.classList.add('hidden');
   document.removeEventListener('keydown', popupEscHandler);
+  uploadOpen.value = null;
 };
 
-uploadOpen.addEventListener('click', function () {
+uploadOpen.addEventListener('change', function () {
   openPopup();
 });
 
