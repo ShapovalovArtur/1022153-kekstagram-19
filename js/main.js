@@ -142,7 +142,7 @@ uploadClose.addEventListener('click', function () {
 });
 
 effectPin.addEventListener('mouseup', function () {
-  console.log('эффект ап');
+  console.log('Отпустил ползунок');
 });
 
 effectsList.addEventListener('change', filterChangeHandler);
