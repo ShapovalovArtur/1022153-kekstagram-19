@@ -102,6 +102,11 @@ for (var i = 0; i < picturesArr.length; i++) {
 var uploadOpen = document.querySelector('#upload-file');
 var uploadOverlay = document.querySelector('.img-upload__overlay');
 var uploadClose = uploadOverlay.querySelector('.img-upload__cancel');
+var effectPin = uploadOverlay.querySelector('.effect-level__pin');
+var body = document.querySelector('body');
+var uploadPreview = uploadOverlay.querySelector('.img-upload__preview img');
+var effectsList = uploadOverlay.querySelector('.effects__list');
+var currentEffect = '';
 
 var popupEscHandler = function (evt) {
   if (evt.key === ESC_KEY) {
@@ -112,12 +117,20 @@ var popupEscHandler = function (evt) {
 var openPopup = function () {
   uploadOverlay.classList.remove('hidden');
   document.addEventListener('keydown', popupEscHandler);
+  body.classList.add('modal-open');
 };
 
 var closePopup = function () {
   uploadOverlay.classList.add('hidden');
   document.removeEventListener('keydown', popupEscHandler);
   uploadOpen.value = null;
+  body.classList.remove('modal-open');
+};
+
+var filterChangeHandler = function (evt) {
+  uploadPreview.classList.remove('effects__preview--' + currentEffect);
+  currentEffect = evt.target.value;
+  uploadPreview.classList.add('effects__preview--' + currentEffect);
 };
 
 uploadOpen.addEventListener('change', function () {
@@ -127,3 +140,9 @@ uploadOpen.addEventListener('change', function () {
 uploadClose.addEventListener('click', function () {
   closePopup();
 });
+
+effectPin.addEventListener('mouseup', function () {
+  console.log('эффект ап');
+});
+
+effectsList.addEventListener('change', filterChangeHandler);
