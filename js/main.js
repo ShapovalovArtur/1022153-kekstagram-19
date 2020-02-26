@@ -28,6 +28,10 @@ var DESCRIPTIONS = [
   'Отвратительно!'
 ];
 
+var EFFECT_NAMES = ['chrome', 'sepia', 'marvin', 'phobos', 'heat'];
+var EFFECT_FILTERS = ['grayscale', 'sepia', 'invert', 'blur', 'brightness'];
+var EFFECT_RATIOS = [0.01, 0.01, 1, 0.03, 0.03];
+
 var photos = [];
 
 var getRandomNumber = function (minValue, maxValue) {
@@ -135,23 +139,24 @@ var filterChangeHandler = function (evt) {
   uploadPreview.classList.add('effects__preview--' + currentEffect);
 };
 
+var getEffect = function () {
+  for (var j = 0; j < 5; j++) {
+    if (EFFECT_NAMES[j] === currentEffect) {
+      var currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + ')';
+      if (j === 2) {
+        currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + '%' + ')';
+      }
+      if (j === 3) {
+        currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + 'px' + ')';
+      }
+    }
+  }
+  uploadPreview.style.filter = currentEffectValue;
+};
+
 var effectChangeHandler = function () {
-  effectPinValue = getRandomNumber(0, 100) / 100;
-  if (currentEffect === 'chrome') {
-    uploadPreview.style.filter = 'grayscale(0.3)';
-  }
-  if (currentEffect === 'sepia') {
-    uploadPreview.style.filter = 'sepia(0.7)';
-  }
-  if (currentEffect === 'marvin') {
-    uploadPreview.style.filter = 'invert(0.3)';
-  }
-  if (currentEffect === 'phobos') {
-    uploadPreview.style.filter = 'blur(1px)';
-  }
-  if (currentEffect === 'heat') {
-    uploadPreview.style.filter = 'brightness(1)';
-  }
+  effectPinValue = getRandomNumber(0, 100);
+  getEffect(effectPinValue);
 };
 
 uploadOpen.addEventListener('change', function () {
@@ -167,3 +172,4 @@ effectsList.addEventListener('change', filterChangeHandler);
 effectPin.addEventListener('mouseup', function () {
   effectChangeHandler();
 });
+
