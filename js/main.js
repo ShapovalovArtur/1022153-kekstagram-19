@@ -169,7 +169,5 @@ uploadClose.addEventListener('click', function () {
 
 effectsList.addEventListener('change', filterChangeHandler);
 
-effectPin.addEventListener('mouseup', function () {
-  effectChangeHandler();
-});
+effectPin.addEventListener('mouseup', effectChangeHandler);
 
