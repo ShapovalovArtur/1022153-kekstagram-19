@@ -167,6 +167,12 @@ var effectChangeHandler = function () {
   getEffect(effectPinValue);
 };
 
+// function checkstr(str) {
+//   var reg = /^[\w\dА-я]+$/;
+//   return reg.test(str);
+// }
+
+
 uploadOpen.addEventListener('change', function () {
   openPopup();
 });
