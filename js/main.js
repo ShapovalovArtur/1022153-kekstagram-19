@@ -112,6 +112,7 @@ var body = document.querySelector('body');
 var uploadPreview = uploadOverlay.querySelector('.img-upload__preview img');
 var effectsList = uploadOverlay.querySelector('.effects__list');
 var currentEffect = '';
+var sliderBar = uploadOverlay.querySelector('.img-upload__effect-level');
 
 var popupEscHandler = function (evt) {
   if (evt.key === ESC_KEY) {
@@ -123,6 +124,7 @@ var openPopup = function () {
   uploadOverlay.classList.remove('hidden');
   document.addEventListener('keydown', popupEscHandler);
   body.classList.add('modal-open');
+  sliderBar.style.display = 'none';
 };
 
 var closePopup = function () {
@@ -137,6 +139,10 @@ var filterChangeHandler = function (evt) {
   uploadPreview.classList.remove('effects__preview--' + currentEffect);
   currentEffect = evt.target.value;
   uploadPreview.classList.add('effects__preview--' + currentEffect);
+  sliderBar.style.display = '';
+  if (currentEffect === 'none') {
+    sliderBar.style.display = 'none';
+  }
 };
 
 var getEffect = function () {
@@ -168,6 +174,5 @@ uploadClose.addEventListener('click', function () {
 });
 
 effectsList.addEventListener('change', filterChangeHandler);
-
 effectPin.addEventListener('mouseup', effectChangeHandler);
 
