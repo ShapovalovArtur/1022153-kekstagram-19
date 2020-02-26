@@ -113,6 +113,8 @@ var uploadPreview = uploadOverlay.querySelector('.img-upload__preview img');
 var effectsList = uploadOverlay.querySelector('.effects__list');
 var currentEffect = '';
 var sliderBar = uploadOverlay.querySelector('.img-upload__effect-level');
+var hashtags = [];
+var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
 
 var popupEscHandler = function (evt) {
   if (evt.key === ESC_KEY) {
@@ -175,4 +177,19 @@ uploadClose.addEventListener('click', function () {
 
 effectsList.addEventListener('change', filterChangeHandler);
 effectPin.addEventListener('mouseup', effectChangeHandler);
+hashtagsInput.addEventListener('change', function () {
+  hashtags = hashtagsInput.value.split(' ');
+  // return hashtags;
+  hashtags.forEach(function (element) {
+    if (element.charAt(0) !== '#') {
+      console.log('Хэштег должен начинаться с решетки');
+    }
+    if (element.length < 2) {
+      console.log('Что-то надо написать');
+    }
+  });
 
+});
+
+// hashtags = hashString.split(' ');
+// console.log(hashtags);
