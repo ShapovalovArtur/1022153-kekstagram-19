@@ -188,7 +188,7 @@ var checkHashtag = function (str) {
 
 var hashtagsValidateHandler = function () {
   hashtags = hashtagsInput.value.split(' ');
-  if (hashtags.length > 5) {
+  if (hashtags.length > MAX_HASHTAGS) {
     hashtagsInput.setCustomValidity('Максимум ' + MAX_HASHTAGS + ' хэштегов');
   } else {
     hashtagsInput.setCustomValidity('');
