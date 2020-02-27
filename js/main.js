@@ -36,6 +36,7 @@ var PIXEL_FILTER_INDEX = 3;
 var MIN_HASHTAG_LENGTH = 1;
 var MAX_HASHTAG_LENGTH = 20;
 var MAX_HASHTAGS = 5;
+var DEFAULT_EFFECT_VALUE = 100;
 
 var photos = [];
 
@@ -151,6 +152,8 @@ var closePopup = function () {
 
 var filterChangeHandler = function (evt) {
   uploadPreview.style.filter = '';
+  effectPinValue = DEFAULT_EFFECT_VALUE;
+  saveEffectValue();
   uploadPreview.classList.remove('effects__preview--' + currentEffect);
   currentEffect = evt.target.value;
   uploadPreview.classList.add('effects__preview--' + currentEffect);
