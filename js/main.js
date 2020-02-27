@@ -117,6 +117,9 @@ var hashtags = [];
 var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
 
 var popupEscHandler = function (evt) {
+  if (hashtagsInput === document.activeElement) {
+    return;
+  }
   if (evt.key === ESC_KEY) {
     closePopup();
   }
@@ -185,7 +188,6 @@ effectsList.addEventListener('change', filterChangeHandler);
 effectPin.addEventListener('mouseup', effectChangeHandler);
 hashtagsInput.addEventListener('change', function () {
   hashtags = hashtagsInput.value.split(' ');
-  // return hashtags;
   hashtags.forEach(function (element) {
     if (element && element.charAt(0) !== '#') {
       console.log('Хэштег должен начинаться с #');
