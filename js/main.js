@@ -175,6 +175,24 @@ var checkHashtag = function (str) {
   return reg.test(str);
 };
 
+var hashtagsValidateHandler = function () {
+  hashtags = hashtagsInput.value.split(' ');
+  hashtags.forEach(function (element) {
+    if (element && element.charAt(0) !== '#' || element === '') {
+      hashtagsInput.setCustomValidity('Хэштег должен начинаться с #');
+    } else if (element.length === 1) {
+      hashtagsInput.setCustomValidity('Надо что-то написать после решетки');
+    } else if (!checkHashtag(element)) {
+      hashtagsInput.setCustomValidity('После решетки можно использовать только буквы и цифры');
+    } else if (element.length > 20) {
+      hashtagsInput.setCustomValidity('Не более 20 символов на хэштег');
+    } else if (hashtags.indexOf(element) !== hashtags.lastIndexOf(element)) {
+      hashtagsInput.setCustomValidity('Хэштеги не должны повторяться!');
+    } else {
+      hashtagsInput.setCustomValidity('');
+    }
+  });
+};
 
 uploadOpen.addEventListener('change', function () {
   openPopup();
@@ -186,23 +204,6 @@ uploadClose.addEventListener('click', function () {
 
 effectsList.addEventListener('change', filterChangeHandler);
 effectPin.addEventListener('mouseup', effectChangeHandler);
-hashtagsInput.addEventListener('change', function () {
-  hashtags = hashtagsInput.value.split(' ');
-  hashtags.forEach(function (element) {
-    if (element && element.charAt(0) !== '#') {
-      console.log('Хэштег должен начинаться с #');
-    } else if (element.length === 1) {
-      console.log('Надо что-то написать');
-    } else if (!checkHashtag(element)) {
-      console.log('После решетки можно использовать только буквы и цифры');
-    } else if (element.length > 20) {
-      console.log('Не более 20 символов на хэштег');
-    } else if (hashtags.indexOf(element) !== hashtags.lastIndexOf(element)) {
-      console.log('Хэштеги не должны повторяться!');
-    }
-  });
+hashtagsInput.addEventListener('input', hashtagsValidateHandler);
 
-});
 
-// hashtags = hashString.split(' ');
-// console.log(hashtags);
