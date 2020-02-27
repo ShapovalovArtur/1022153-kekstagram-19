@@ -31,6 +31,8 @@ var DESCRIPTIONS = [
 var EFFECT_NAMES = ['chrome', 'sepia', 'marvin', 'phobos', 'heat'];
 var EFFECT_FILTERS = ['grayscale', 'sepia', 'invert', 'blur', 'brightness'];
 var EFFECT_RATIOS = [0.01, 0.01, 1, 0.03, 0.03];
+var PERCENT_FILTER_INDEX = 2;
+var PIXEL_FILTER_INDEX = 3;
 
 var photos = [];
 
@@ -156,13 +158,13 @@ var filterChangeHandler = function (evt) {
 };
 
 var getEffect = function () {
-  for (var j = 0; j < 5; j++) {
+  for (var j = 0; j < EFFECT_NAMES.length; j++) {
     if (EFFECT_NAMES[j] === currentEffect) {
       var currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + ')';
-      if (j === 2) {
+      if (j === PERCENT_FILTER_INDEX) {
         currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + '%' + ')';
       }
-      if (j === 3) {
+      if (j === PIXEL_FILTER_INDEX) {
         currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + 'px' + ')';
       }
     }
