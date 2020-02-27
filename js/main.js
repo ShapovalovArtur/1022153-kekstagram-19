@@ -191,26 +191,24 @@ var checkHashtag = function (str) {
 
 var hashtagsValidateHandler = function () {
   hashtags = hashtagsInput.value.split(' ');
-  if (hashtags.length > MAX_HASHTAGS) {
-    hashtagsInput.setCustomValidity('Максимум ' + MAX_HASHTAGS + ' хэштегов');
-  } else {
-    hashtagsInput.setCustomValidity('');
-    hashtags.forEach(function (element) {
-      if (element && element.charAt(0) !== '#' || element === '') {
-        hashtagsInput.setCustomValidity('Хэштег должен начинаться с #');
-      } else if (element.length === MIN_HASHTAG_LENGTH) {
-        hashtagsInput.setCustomValidity('Надо что-то написать после решетки');
-      } else if (!checkHashtag(element)) {
-        hashtagsInput.setCustomValidity('После решетки можно использовать только буквы и цифры');
-      } else if (element.length > MAX_HASHTAG_LENGTH) {
-        hashtagsInput.setCustomValidity('Не более ' + MAX_HASHTAG_LENGTH + ' символов на хэштег');
-      } else if (hashtags.indexOf(element) !== hashtags.lastIndexOf(element)) {
-        hashtagsInput.setCustomValidity('Хэштеги не должны повторяться!');
-      } else {
-        hashtagsInput.setCustomValidity('');
-      }
-    });
-  }
+  hashtags.forEach(function (element) {
+    if (hashtags.length > MAX_HASHTAGS) {
+      hashtagsInput.setCustomValidity('Максимум ' + MAX_HASHTAGS + ' хэштегов');
+    } else if (element && element.charAt(0) !== '#' || element === '') {
+      hashtagsInput.setCustomValidity('Хэштег должен начинаться с #');
+    } else if (element.length === MIN_HASHTAG_LENGTH) {
+      hashtagsInput.setCustomValidity('Надо что-то написать после решетки');
+    } else if (!checkHashtag(element)) {
+      hashtagsInput.setCustomValidity('После решетки можно использовать только буквы и цифры');
+    } else if (element.length > MAX_HASHTAG_LENGTH) {
+      hashtagsInput.setCustomValidity('Не более ' + MAX_HASHTAG_LENGTH + ' символов на хэштег');
+    } else if (hashtags.indexOf(element) !== hashtags.lastIndexOf(element)) {
+      hashtagsInput.setCustomValidity('Хэштеги не должны повторяться!');
+    } else {
+      hashtagsInput.setCustomValidity('');
+    }
+  });
+
 };
 
 uploadOpen.addEventListener('change', function () {
