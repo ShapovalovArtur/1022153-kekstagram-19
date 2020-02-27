@@ -33,6 +33,9 @@ var EFFECT_FILTERS = ['grayscale', 'sepia', 'invert', 'blur', 'brightness'];
 var EFFECT_RATIOS = [0.01, 0.01, 1, 0.03, 0.03];
 var PERCENT_FILTER_INDEX = 2;
 var PIXEL_FILTER_INDEX = 3;
+var MIN_HASHTAG_LENGTH = 1;
+var MAX_HASHTAG_LENGTH = 20;
+var MAX_HASHTAGS = 5;
 
 var photos = [];
 
@@ -185,14 +188,18 @@ var checkHashtag = function (str) {
 
 var hashtagsValidateHandler = function () {
   hashtags = hashtagsInput.value.split(' ');
+  if (hashtags.length > 5) {
+    hashtagsInput.setCustomValidity('Максимум ' + MAX_HASHTAGS + ' хэштегов');
+    return;
+  }
   hashtags.forEach(function (element) {
     if (element && element.charAt(0) !== '#' || element === '') {
       hashtagsInput.setCustomValidity('Хэштег должен начинаться с #');
-    } else if (element.length === 1) {
+    } else if (element.length === MIN_HASHTAG_LENGTH) {
       hashtagsInput.setCustomValidity('Надо что-то написать после решетки');
     } else if (!checkHashtag(element)) {
       hashtagsInput.setCustomValidity('После решетки можно использовать только буквы и цифры');
-    } else if (element.length > 20) {
+    } else if (element.length > MAX_HASHTAG_LENGTH) {
       hashtagsInput.setCustomValidity('Не более 20 символов на хэштег');
     } else if (hashtags.indexOf(element) !== hashtags.lastIndexOf(element)) {
       hashtagsInput.setCustomValidity('Хэштеги не должны повторяться!');
