@@ -167,10 +167,10 @@ var effectChangeHandler = function () {
   getEffect(effectPinValue);
 };
 
-// function checkstr(str) {
-//   var reg = /^[\w\dА-я]+$/;
-//   return reg.test(str);
-// }
+var checkHashtag = function (str) {
+  var reg = /#[\w\dА-я]+$/;
+  return reg.test(str);
+};
 
 
 uploadOpen.addEventListener('change', function () {
@@ -187,11 +187,16 @@ hashtagsInput.addEventListener('change', function () {
   hashtags = hashtagsInput.value.split(' ');
   // return hashtags;
   hashtags.forEach(function (element) {
-    if (element.charAt(0) !== '#') {
-      console.log('Хэштег должен начинаться с решетки');
-    }
-    if (element.length < 2) {
-      console.log('Что-то надо написать');
+    if (element && element.charAt(0) !== '#') {
+      console.log('Хэштег должен начинаться с #');
+    } else if (element.length === 1) {
+      console.log('Надо что-то написать');
+    } else if (!checkHashtag(element)) {
+      console.log('После решетки можно использовать только буквы и цифры');
+    } else if (element.length > 20) {
+      console.log('Не более 20 символов на хэштег');
+    } else if (hashtags.indexOf(element) !== hashtags.lastIndexOf(element)) {
+      console.log('Хэштеги не должны повторяться!');
     }
   });
 
