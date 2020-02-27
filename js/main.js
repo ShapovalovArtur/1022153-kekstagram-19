@@ -107,7 +107,7 @@ var uploadOpen = document.querySelector('#upload-file');
 var uploadOverlay = document.querySelector('.img-upload__overlay');
 var uploadClose = uploadOverlay.querySelector('.img-upload__cancel');
 var effectPin = uploadOverlay.querySelector('.effect-level__pin');
-var effectPinValue = uploadOverlay.querySelector('.effect-level__value');
+var effectPinValue = uploadOverlay.querySelector('.effect-level__value').value;
 var body = document.querySelector('body');
 var uploadPreview = uploadOverlay.querySelector('.img-upload__preview img');
 var effectsList = uploadOverlay.querySelector('.effects__list');
@@ -115,6 +115,11 @@ var currentEffect = '';
 var sliderBar = uploadOverlay.querySelector('.img-upload__effect-level');
 var hashtags = [];
 var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
+
+var saveEffectValue = function () {
+  uploadOverlay.querySelector('.effect-level__value').value = effectPinValue;
+};
+
 
 var popupEscHandler = function (evt) {
   if (hashtagsInput === document.activeElement) {
@@ -168,6 +173,7 @@ var getEffect = function () {
 var effectChangeHandler = function () {
   effectPinValue = getRandomNumber(0, 100);
   getEffect(effectPinValue);
+  saveEffectValue();
 };
 
 var checkHashtag = function (str) {
