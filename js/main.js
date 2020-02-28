@@ -28,22 +28,15 @@ var DESCRIPTIONS = [
   'Отвратительно!'
 ];
 
-var EFFECT_NAMES = ['chrome', 'sepia', 'marvin', 'phobos', 'heat'];
-var EFFECT_FILTERS = ['grayscale', 'sepia', 'invert', 'blur', 'brightness'];
-var EFFECT_RATIOS = [0.01, 0.01, 1, 0.03, 0.03];
-var PERCENT_FILTER_INDEX = 2;
-var PIXEL_FILTER_INDEX = 3;
+// var EFFECT_NAMES = ['chrome', 'sepia', 'marvin', 'phobos', 'heat'];
+// var EFFECT_FILTERS = ['grayscale', 'sepia', 'invert', 'blur', 'brightness'];
+// var EFFECT_RATIOS = [0.01, 0.01, 1, 0.03, 0.03];
+// var PERCENT_FILTER_INDEX = 2;
+// var PIXEL_FILTER_INDEX = 3;
 var MIN_HASHTAG_LENGTH = 1;
 var MAX_HASHTAG_LENGTH = 20;
 var MAX_HASHTAGS = 5;
 var DEFAULT_EFFECT_VALUE = 100;
-var effects = [
-  {chrome: 'grayscale(' + 0.01 * effectPinValue + ')'},
-  {sepia: 'sepia(' + 0.01 * effectPinValue + ')'},
-  {marvin: 'invert(' + 0.01 * effectPinValue + '%)'},
-  {phobos: 'blur(' + effectPinValue * 0.03 + 'px)'},
-  {heat: 'brightness()'}
-];
 
 var photos = [];
 
@@ -129,6 +122,14 @@ var sliderBar = uploadOverlay.querySelector('.img-upload__effect-level');
 var hashtags = [];
 var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
 
+var effects = [
+  {chrome: 'grayscale(' + 0.01 * effectPinValue + ')'},
+  {sepia: 'sepia(' + 0.01 * effectPinValue + ')'},
+  {marvin: 'invert(' + effectPinValue + '%)'},
+  {phobos: 'blur(' + effectPinValue * 0.03 + 'px)'},
+  {heat: 'brightness(' + 0.03 * effectPinValue + ')'}
+];
+
 var saveEffectValue = function () {
   uploadOverlay.querySelector('.effect-level__value').value = effectPinValue;
 };
@@ -171,23 +172,15 @@ var filterChangeHandler = function (evt) {
 };
 
 var getEffect = function () {
-  // for (var j = 0; j < EFFECT_NAMES.length; j++) {
-  //   if (EFFECT_NAMES[j] === currentEffect) {
-  //     var currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + ')';
-  //     if (j === PERCENT_FILTER_INDEX) {
-  //       currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + '%' + ')';
-  //     }
-  //     if (j === PIXEL_FILTER_INDEX) {
-  //       currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + 'px' + ')';
-  //     }
-  //   }
-  // }
+  for (var j = 0; j < effects.length; j++) {
+    var currentEffectValue = effects[j].currentEffect;
+  }
   uploadPreview.style.filter = currentEffectValue;
 };
 
 var effectChangeHandler = function () {
   effectPinValue = getRandomNumber(0, 100);
-  getEffect(effectPinValue);
+  getEffect();
   saveEffectValue();
 };
 
