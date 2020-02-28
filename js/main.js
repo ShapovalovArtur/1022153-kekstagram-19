@@ -37,6 +37,13 @@ var MIN_HASHTAG_LENGTH = 1;
 var MAX_HASHTAG_LENGTH = 20;
 var MAX_HASHTAGS = 5;
 var DEFAULT_EFFECT_VALUE = 100;
+var effects = [
+  {chrome: 'grayscale(' + 0.01 * effectPinValue + ')'},
+  {sepia: 'sepia(' + 0.01 * effectPinValue + ')'},
+  {marvin: 'invert(' + 0.01 * effectPinValue + '%)'},
+  {phobos: 'blur(' + effectPinValue * 0.03 + 'px)'},
+  {heat: 'brightness()'}
+];
 
 var photos = [];
 
@@ -164,17 +171,17 @@ var filterChangeHandler = function (evt) {
 };
 
 var getEffect = function () {
-  for (var j = 0; j < EFFECT_NAMES.length; j++) {
-    if (EFFECT_NAMES[j] === currentEffect) {
-      var currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + ')';
-      if (j === PERCENT_FILTER_INDEX) {
-        currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + '%' + ')';
-      }
-      if (j === PIXEL_FILTER_INDEX) {
-        currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + 'px' + ')';
-      }
-    }
-  }
+  // for (var j = 0; j < EFFECT_NAMES.length; j++) {
+  //   if (EFFECT_NAMES[j] === currentEffect) {
+  //     var currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + ')';
+  //     if (j === PERCENT_FILTER_INDEX) {
+  //       currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + '%' + ')';
+  //     }
+  //     if (j === PIXEL_FILTER_INDEX) {
+  //       currentEffectValue = EFFECT_FILTERS[j] + '(' + EFFECT_RATIOS[j] * effectPinValue + 'px' + ')';
+  //     }
+  //   }
+  // }
   uploadPreview.style.filter = currentEffectValue;
 };
 
