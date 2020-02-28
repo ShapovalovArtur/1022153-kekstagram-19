@@ -191,10 +191,16 @@ var checkHashtag = function (str) {
 
 var hashtagsValidateHandler = function () {
   hashtags = hashtagsInput.value.split(' ');
+  for (i = 0; i < hashtags.length; i++) {
+    if (hashtags[i] === '') {
+      hashtags.splice(i, 1);
+      i--;
+    }
+  }
   hashtags.forEach(function (element) {
     if (hashtags.length > MAX_HASHTAGS) {
       hashtagsInput.setCustomValidity('Максимум ' + MAX_HASHTAGS + ' хэштегов');
-    } else if (element && element.charAt(0) !== '#' || element === '') {
+    } else if (element && element.charAt(0) !== '#') {
       hashtagsInput.setCustomValidity('Хэштег должен начинаться с #');
     } else if (element.length === MIN_HASHTAG_LENGTH) {
       hashtagsInput.setCustomValidity('Надо что-то написать после решетки');
