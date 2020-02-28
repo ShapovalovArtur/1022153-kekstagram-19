@@ -190,7 +190,7 @@ var checkHashtag = function (str) {
 };
 
 var hashtagsValidateHandler = function () {
-  hashtags = hashtagsInput.value.split(' ');
+  hashtags = hashtagsInput.value.toLowerCase().split(' ');
   for (i = 0; i < hashtags.length; i++) {
     if (hashtags[i] === '') {
       hashtags.splice(i, 1);
