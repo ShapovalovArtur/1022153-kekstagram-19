@@ -28,11 +28,6 @@ var DESCRIPTIONS = [
   'Отвратительно!'
 ];
 
-// var EFFECT_NAMES = ['chrome', 'sepia', 'marvin', 'phobos', 'heat'];
-// var EFFECT_FILTERS = ['grayscale', 'sepia', 'invert', 'blur', 'brightness'];
-// var EFFECT_RATIOS = [0.01, 0.01, 1, 0.03, 0.03];
-// var PERCENT_FILTER_INDEX = 2;
-// var PIXEL_FILTER_INDEX = 3;
 var MIN_HASHTAG_LENGTH = 1;
 var MAX_HASHTAG_LENGTH = 20;
 var MAX_HASHTAGS = 5;
@@ -172,15 +167,15 @@ var filterChangeHandler = function (evt) {
 };
 
 var getEffect = function () {
-  for (var j = 0; j < effects.length; j++) {
-    var currentEffectValue = effects[j].currentEffect;
-  }
+ // for (var j = 0; j < effects.length; j++) {
+  var currentEffectValue = effects[j].currentEffect;
+  console.log(currentEffect);
   uploadPreview.style.filter = currentEffectValue;
 };
 
 var effectChangeHandler = function () {
   effectPinValue = getRandomNumber(0, 100);
-  getEffect();
+  getEffect(currentEffect);
   saveEffectValue();
 };
 
