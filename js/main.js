@@ -117,13 +117,13 @@ var sliderBar = uploadOverlay.querySelector('.img-upload__effect-level');
 var hashtags = [];
 var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
 
-var effects = [
-  {chrome: 'grayscale(' + 0.01 * effectPinValue + ')'},
-  {sepia: 'sepia(' + 0.01 * effectPinValue + ')'},
-  {marvin: 'invert(' + effectPinValue + '%)'},
-  {phobos: 'blur(' + effectPinValue * 0.03 + 'px)'},
-  {heat: 'brightness(' + 0.03 * effectPinValue + ')'}
-];
+var effect = {
+  chrome: 'grayscale(' + 0.01 * effectPinValue + ')',
+  sepia: 'sepia(' + 0.01 * effectPinValue + ')',
+  marvin: 'invert(' + effectPinValue + '%)',
+  phobos: 'blur(' + effectPinValue * 0.03 + 'px)',
+  heat: 'brightness(' + 0.03 * effectPinValue + ')'
+};
 
 var saveEffectValue = function () {
   uploadOverlay.querySelector('.effect-level__value').value = effectPinValue;
@@ -167,8 +167,7 @@ var filterChangeHandler = function (evt) {
 };
 
 var getEffect = function () {
- // for (var j = 0; j < effects.length; j++) {
-  var currentEffectValue = effects[j].currentEffect;
+  var currentEffectValue = effect.currentEffect;
   console.log(currentEffect);
   uploadPreview.style.filter = currentEffectValue;
 };
