@@ -17,7 +17,6 @@
     uploadOverlay.querySelector('.effect-level__value').value = effectPinValue;
   };
 
-
   var popupEscHandler = function (evt) {
     if (hashtagsInput === document.activeElement) {
       return;
