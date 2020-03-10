@@ -83,11 +83,17 @@
 
   var picturesArr = createPhotos();
 
+  var checkHashtag = function (str) {
+    var reg = /#[\w\dА-я]+$/;
+    return reg.test(str);
+  };
+
   window.data = {
     picturesArr: picturesArr,
     DEFAULT_EFFECT_VALUE: DEFAULT_EFFECT_VALUE,
     MAX_HASHTAGS: MAX_HASHTAGS,
     MIN_HASHTAG_LENGTH: MIN_HASHTAG_LENGTH,
-    MAX_HASHTAG_LENGTH: MAX_HASHTAG_LENGTH
+    MAX_HASHTAG_LENGTH: MAX_HASHTAG_LENGTH,
+    checkHashtag: checkHashtag
   };
 })();
