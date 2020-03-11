@@ -15,7 +15,7 @@
     return picture;
   };
 
-  for (var i = 0; i < window.data.picturesArr.length; i++) {
+  window.data.picturesArr.forEach(function (element, i) {
     picturesList.appendChild(renderPicture(i));
-  }
+  });
 })();
