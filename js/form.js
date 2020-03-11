@@ -13,6 +13,11 @@
   var hashtags = [];
   var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
 
+  var checkHashtag = function (str) {
+    var reg = /#[\w\dА-я]+$/;
+    return reg.test(str);
+  };
+
   var saveEffectValue = function () {
     uploadOverlay.querySelector('.effect-level__value').value = effectPinValue;
   };
@@ -86,7 +91,7 @@
         hashtagsInput.setCustomValidity('Хэштег должен начинаться с #');
       } else if (element.length === window.data.MIN_HASHTAG_LENGTH) {
         hashtagsInput.setCustomValidity('Надо что-то написать после решетки');
-      } else if (!window.data.checkHashtag(element)) {
+      } else if (!checkHashtag(element)) {
         hashtagsInput.setCustomValidity('После решетки можно использовать только буквы и цифры');
       } else if (element.length > window.data.MAX_HASHTAG_LENGTH) {
         hashtagsInput.setCustomValidity('Не более ' + window.data.MAX_HASHTAG_LENGTH + ' символов на хэштег');
