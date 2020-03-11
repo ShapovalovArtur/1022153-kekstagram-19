@@ -12,6 +12,13 @@
   var sliderBar = uploadOverlay.querySelector('.img-upload__effect-level');
   var hashtags = [];
   var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
+  var effect = {
+    chrome: 'grayscale(' + 0.01 * effectPinValue + ')',
+    sepia: 'sepia(' + 0.01 * effectPinValue + ')',
+    marvin: 'invert(' + effectPinValue + '%)',
+    phobos: 'blur(' + effectPinValue * 0.03 + 'px)',
+    heat: 'brightness(' + 0.03 * effectPinValue + ')'
+  };
 
   var checkHashtag = function (str) {
     var reg = /#[\w\dА-я]+$/;
@@ -59,13 +66,6 @@
   };
 
   var getEffect = function () {
-    var effect = {
-      chrome: 'grayscale(' + 0.01 * effectPinValue + ')',
-      sepia: 'sepia(' + 0.01 * effectPinValue + ')',
-      marvin: 'invert(' + effectPinValue + '%)',
-      phobos: 'blur(' + effectPinValue * 0.03 + 'px)',
-      heat: 'brightness(' + 0.03 * effectPinValue + ')'
-    };
     var currentEffectValue = effect[currentEffect];
     uploadPreview.style.filter = currentEffectValue;
   };
