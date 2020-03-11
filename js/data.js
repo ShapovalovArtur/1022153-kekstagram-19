@@ -81,10 +81,8 @@
     return photos;
   };
 
-  var picturesArr = createPhotos();
-
   window.data = {
-    picturesArr: picturesArr,
+    createPhotos: createPhotos,
     DEFAULT_EFFECT_VALUE: DEFAULT_EFFECT_VALUE,
     MAX_HASHTAGS: MAX_HASHTAGS,
     MIN_HASHTAG_LENGTH: MIN_HASHTAG_LENGTH,
