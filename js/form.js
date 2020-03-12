@@ -12,12 +12,33 @@
   var sliderBar = uploadOverlay.querySelector('.img-upload__effect-level');
   var hashtags = [];
   var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
+
+  var getGrayscale = function (currentEffectPinValue) {
+    return 'grayscale(' + 0.01 * currentEffectPinValue + ')';
+  };
+
+  var getSepia = function (currentEffectPinValue) {
+    return 'sepia(' + 0.01 * currentEffectPinValue + ')';
+  };
+
+  var getInvert = function (currentEffectPinValue) {
+    return 'invert(' + currentEffectPinValue + '%)';
+  };
+
+  var getBlur = function (currentEffectPinValue) {
+    return 'blur(' + currentEffectPinValue * 0.03 + 'px)';
+  };
+
+  var getBrightness = function (currentEffectPinValue) {
+    return 'brightness(' + 0.03 * currentEffectPinValue + ')';
+  };
+
   var effect = {
-    chrome: 'grayscale(' + 0.01 * effectPinValue + ')',
-    sepia: 'sepia(' + 0.01 * effectPinValue + ')',
-    marvin: 'invert(' + effectPinValue + '%)',
-    phobos: 'blur(' + effectPinValue * 0.03 + 'px)',
-    heat: 'brightness(' + 0.03 * effectPinValue + ')'
+    chrome: getGrayscale,
+    sepia: getSepia,
+    marvin: getInvert,
+    phobos: getBlur,
+    heat: getBrightness
   };
 
   var checkHashtag = function (str) {
@@ -66,7 +87,7 @@
   };
 
   var getEffect = function () {
-    var currentEffectValue = effect[currentEffect];
+    var currentEffectValue = effect[currentEffect](effectPinValue);
     uploadPreview.style.filter = currentEffectValue;
   };
 
