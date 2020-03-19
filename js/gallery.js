@@ -39,6 +39,8 @@
 
   var renderBigPicture = function (evt) {
     bigPictureImage.src = evt.target.src;
+    socialHeader.textContent = 'AAAAAAA';
+    console.log(picturesArr);
   };
 
   window.backend.load(successLoadHandler, errorHandler);
@@ -46,6 +48,8 @@
   var bigPicturePopup = document.querySelector('.big-picture');
   var bigPictureImage = bigPicturePopup.querySelector('img');
   var bigPictureClose = bigPicturePopup.querySelector('.big-picture__cancel');
+  var social = bigPicturePopup.querySelector('.big-picture__social');
+  var socialHeader = social.querySelector('.social__caption');
 
   var closePopupButtonHandler = function () {
     bigPicturePopup.classList.add('hidden');
@@ -61,6 +65,5 @@
   };
 
   document.addEventListener('click', thumbnailClickHandler);
-
 
 })();
