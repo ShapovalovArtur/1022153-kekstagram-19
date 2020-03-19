@@ -37,5 +37,30 @@
     return picture;
   };
 
+  var renderBigPicture = function (evt) {
+    bigPictureImage.src = evt.target.src;
+  };
+
   window.backend.load(successLoadHandler, errorHandler);
+
+  var bigPicturePopup = document.querySelector('.big-picture');
+  var bigPictureImage = bigPicturePopup.querySelector('img');
+  var bigPictureClose = bigPicturePopup.querySelector('.big-picture__cancel');
+
+  var closePopupButtonHandler = function () {
+    bigPicturePopup.classList.add('hidden');
+    bigPictureClose.removeEventListener('click', closePopupButtonHandler);
+  };
+
+  var thumbnailClickHandler = function (evt) {
+    if (evt.target.className === 'picture__img') {
+      bigPicturePopup.classList.remove('hidden');
+      bigPictureClose.addEventListener('click', closePopupButtonHandler);
+      renderBigPicture(evt);
+    }
+  };
+
+  document.addEventListener('click', thumbnailClickHandler);
+
+
 })();
