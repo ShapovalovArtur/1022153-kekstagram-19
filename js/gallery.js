@@ -69,21 +69,25 @@
     pictureComments.textContent = picturesArr[i].comments.length;
     picture.addEventListener('click', function () {
       renderBigPicture(i);
+      openBigPicturePopup();
     });
     return picture;
   };
 
-  var renderBigPicture = function (i) {
+  var openBigPicturePopup = function () {
     bigPicturePopup.classList.remove('hidden');
     bigPictureClose.addEventListener('click', closePopupButtonHandler);
     document.addEventListener('keydown', escKeyHandler);
+    socialCommentsCount.classList.add('hidden');
+    commentsLoader.classList.add('hidden');
+    body.classList.add('modal-open');
+  };
+
+  var renderBigPicture = function (i) {
     bigPictureImage.src = picturesArr[i].url;
     socialHeader.textContent = picturesArr[i].description;
     likesCount.textContent = picturesArr[i].likes;
     commentsCount.textContent = picturesArr[i].comments.length;
-    socialCommentsCount.classList.add('hidden');
-    commentsLoader.classList.add('hidden');
-    body.classList.add('modal-open');
   };
 
   window.backend.load(successLoadHandler, errorHandler);
