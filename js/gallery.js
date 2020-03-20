@@ -48,10 +48,10 @@
   };
 
   var escKeyHandler = function (evt) {
-
     if (commentInput === document.activeElement) {
       return;
     }
+
     if (evt.key === ESC_KEY) {
       document.removeEventListener('keydown', escKeyHandler);
       closeBigPicturePopup();
@@ -87,6 +87,4 @@
   };
 
   window.backend.load(successLoadHandler, errorHandler);
-
-
 })();
