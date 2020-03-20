@@ -134,6 +134,6 @@
   });
 
   effectsList.addEventListener('change', filterChangeHandler);
-  effectPin.addEventListener('mouseup', effectChangeHandler);
+  // effectPin.addEventListener('mouseup', effectChangeHandler);
   hashtagsInput.addEventListener('input', hashtagsValidateHandler);
 })();
