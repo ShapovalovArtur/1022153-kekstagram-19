@@ -18,22 +18,26 @@
     };
 
     var mouseMoveHandler = function (moveEvt) {
+      var pin = moveEvt.toElement;
+      var line = pin.offsetParent;
+      if (line.offsetLeft <= 0 && line.offsetLeft <= 450 ) {
+        var shift = {
+          x: startCoords.x - moveEvt.clientX,
+        };
 
-      if (sliderHandle.offsetLeft < sliderLine.offsetLeft || (sliderHandle.offsetLeft) > (sliderLine.offsetLeft + sliderLine.offsetWidth - GAP)) {
-        console.log('уехал вбок');
-        console.log(sliderLine.offsetWidth);
+        startCoords = {
+          x: moveEvt.clientX,
+        };
+
+        sliderHandle.style.left = (sliderHandle.offsetLeft - shift.x + 'px');
+
+
+        console.log(moveEvt)
+
       }
+      console.log(line.offsetLeft);
+      console.log(moveEvt);
       moveEvt.preventDefault();
-
-      var shift = {
-        x: startCoords.x - moveEvt.clientX,
-      };
-
-      startCoords = {
-        x: moveEvt.clientX,
-      };
-
-      sliderHandle.style.left = (sliderHandle.offsetLeft - shift.x + 'px');
     };
 
     var mouseUpHandler = function (upEvt) {
