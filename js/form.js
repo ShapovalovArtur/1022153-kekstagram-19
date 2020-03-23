@@ -3,6 +3,7 @@
 
   var DEFAULT_PIN_VALUE = 100;
   var DEFAULT_BAR_WIDTH = 453;
+  var DEFAULT_EFFECT_VALUE = 'none';
 
   var main = document.querySelector('main');
   var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
@@ -76,6 +77,8 @@
   };
 
   var closeUploadPopup = function () {
+    form.reset();
+    uploadPreview.style.filter = DEFAULT_EFFECT_VALUE;
     uploadOverlay.classList.add('hidden');
     document.removeEventListener('keydown', popupEscHandler);
     uploadOpen.value = null;
@@ -83,7 +86,6 @@
   };
 
   var successSaveHandler = function () {
-    form.reset();
     closeUploadPopup();
     renderSuccessMessage();
   };
