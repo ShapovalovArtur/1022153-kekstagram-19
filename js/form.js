@@ -1,6 +1,5 @@
 'use strict';
 (function () {
-
   var DEFAULT_PIN_VALUE = 100;
   var DEFAULT_BAR_WIDTH = 453;
 

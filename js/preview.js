@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-
   var ESC_KEY = 'Escape';
 
   var body = document.querySelector('body');
@@ -52,6 +51,7 @@
       closeBigPicturePopup();
     }
   };
+
   var previewClickHandler = function (picture, i, picturesArr) {
     renderBigPicture(i, picturesArr);
     openBigPicturePopup();
@@ -60,5 +60,4 @@
   window.preview = {
     previewClickHandler: previewClickHandler
   };
-
 })();

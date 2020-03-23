@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-
   var picturesArr = [];
 
   var picturesList = document.querySelector('.pictures');
