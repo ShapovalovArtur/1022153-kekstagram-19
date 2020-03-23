@@ -40,4 +40,8 @@
   };
 
   window.backend.load(successLoadHandler, errorHandler);
+
+  window.gallery = {
+    errorHandler: errorHandler
+  };
 })();

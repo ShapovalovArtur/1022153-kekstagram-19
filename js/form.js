@@ -17,6 +17,7 @@
   var hashtags = [];
   var hashtagsInput = uploadOverlay.querySelector('.text__hashtags');
   var effectDepth = uploadOverlay.querySelector('.effect-level__depth');
+  var form = document.querySelector('.img-upload__form');
 
   var getGrayscale = function (currentEffectPinValue) {
     return 'grayscale(' + 0.01 * currentEffectPinValue + ')';
@@ -76,6 +77,11 @@
     document.removeEventListener('keydown', popupEscHandler);
     uploadOpen.value = null;
     body.classList.remove('modal-open');
+  };
+
+  var successSaveHandler = function () {
+    form.reset();
+    closePopup();
   };
 
   var filterChangeHandler = function (evt) {
@@ -143,6 +149,11 @@
 
   effectsList.addEventListener('change', filterChangeHandler);
   hashtagsInput.addEventListener('input', hashtagsValidateHandler);
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(form), successSaveHandler, window.gallery.errorHandler);
+  });
 
   window.form = {
     effectChangeHandler: effectChangeHandler
