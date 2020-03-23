@@ -64,7 +64,7 @@
       return;
     }
     if (evt.key === window.util.ESC_KEY) {
-      closePopup();
+      closeUploadPopup();
     }
   };
 
