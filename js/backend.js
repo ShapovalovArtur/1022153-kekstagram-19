@@ -19,13 +19,19 @@
         successHandler(xhr.response);
       } else {
         errorHandler('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        window.form.closeUploadPopup();
+        window.form.renderErrorMessage();
       }
     });
     xhr.addEventListener('error', function () {
       errorHandler('Произошла ошибка соединения');
+      window.form.closeUploadPopup();
+      window.form.renderErrorMessage();
     });
     xhr.addEventListener('timeout', function () {
       errorHandler('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+      window.form.closeUploadPopup();
+      window.form.renderErrorMessage();
     });
 
     xhr.timeout = SERVER_TIMEOUT;

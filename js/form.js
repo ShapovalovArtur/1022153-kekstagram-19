@@ -4,6 +4,9 @@
   var DEFAULT_PIN_VALUE = 100;
   var DEFAULT_BAR_WIDTH = 453;
 
+  var main = document.querySelector('main');
+  var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
+  var errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
   var uploadOpen = document.querySelector('#upload-file');
   var uploadOverlay = document.querySelector('.img-upload__overlay');
   var uploadClose = uploadOverlay.querySelector('.img-upload__cancel');
@@ -72,7 +75,7 @@
     sliderBar.style.display = 'none';
   };
 
-  var closePopup = function () {
+  var closeUploadPopup = function () {
     uploadOverlay.classList.add('hidden');
     document.removeEventListener('keydown', popupEscHandler);
     uploadOpen.value = null;
@@ -81,7 +84,50 @@
 
   var successSaveHandler = function () {
     form.reset();
-    closePopup();
+    closeUploadPopup();
+    renderSuccessMessage();
+  };
+
+  var successEscHandler = function (evt) {
+    if (evt.key === window.util.ESC_KEY) {
+      successRemove();
+      document.removeEventListener('keydown', successEscHandler);
+    }
+  };
+
+  var errorEscHandler = function (evt) {
+    if (evt.key === window.util.ESC_KEY) {
+      errorRemove();
+      document.removeEventListener('keydown', errorEscHandler);
+    }
+  };
+
+  var successRemove = function () {
+    var message = document.querySelector('.success');
+    main.removeChild(message);
+    document.removeEventListener('click', successRemove);
+    document.removeEventListener('keydown', successEscHandler);
+  };
+
+  var errorRemove = function () {
+    var message = document.querySelector('.error');
+    main.removeChild(message);
+    document.removeEventListener('click', errorRemove);
+    document.removeEventListener('keydown', errorEscHandler);
+  };
+
+  var renderSuccessMessage = function () {
+    var message = successMessageTemplate.cloneNode(true);
+    main.appendChild(message);
+    document.addEventListener('click', successRemove);
+    document.addEventListener('keydown', successEscHandler);
+  };
+
+  var renderErrorMessage = function () {
+    var message = errorMessageTemplate.cloneNode(true);
+    main.appendChild(message);
+    document.addEventListener('click', errorRemove);
+    document.addEventListener('keydown', errorEscHandler);
   };
 
   var filterChangeHandler = function (evt) {
@@ -144,7 +190,7 @@
   });
 
   uploadClose.addEventListener('click', function () {
-    closePopup();
+    closeUploadPopup();
   });
 
   effectsList.addEventListener('change', filterChangeHandler);
@@ -156,6 +202,8 @@
   });
 
   window.form = {
-    effectChangeHandler: effectChangeHandler
+    effectChangeHandler: effectChangeHandler,
+    renderErrorMessage: renderErrorMessage,
+    closeUploadPopup: closeUploadPopup
   };
 })();
